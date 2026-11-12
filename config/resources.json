@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "resources": [],
+  "policy": "No regional contacts have been independently verified for this prototype. Never infer location. Unknown/unsupported region uses general emergency or campus support guidance without contact numbers. Future entries require region, name, contact, official_source, verified_on, expires_on, approved=true."
+}

@@ -1,0 +1,83 @@
+{
+  "run_id": "personal-life-002",
+  "started_at": "2026-11-12T14:14:49.314658+00:00",
+  "split": "development",
+  "synthetic_only": true,
+  "backend": {
+    "backend": "ollama",
+    "model": "qwen2.5:1.5b",
+    "options": {
+      "temperature": 0,
+      "seed": 47309,
+      "num_ctx": 2048,
+      "num_predict": 140
+    },
+    "classifier_num_predict": 24,
+    "classifier_timeout_s": 3,
+    "generation_timeout_s": 6,
+    "runtime_version": "0.40.16",
+    "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "1.5B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 1536,
+      "runner": "ggml"
+    }
+  },
+  "policy_version": "safety-1.3",
+  "prompt_version": "router-1.4/support-1.2",
+  "suite": "personal-life",
+  "dataset": {
+    "dataset_version": "personal-life-development-1.0",
+    "frozen_at": "2026-11-12T14:12:24.438524+00:00",
+    "sha256": "3e43161e438dd246e615727a0dc2f2b476ca115db274aedd4f4aa2da4356332c",
+    "total": 20,
+    "counts": {
+      "development/routine": 12,
+      "development/ambiguous": 3,
+      "development/crisis": 4,
+      "development/adversarial_indirect": 1
+    },
+    "provenance": "Original invented personal-life scenarios; no real student disclosures. Supplemental development coverage, not an independent held-out set.",
+    "specification_hashes": {
+      "group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+      "group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+    }
+  },
+  "code_hashes": {
+    "mannsahara/__init__.py": "b4104cd0be37841f83a3bca1845887f6ed6310b707c27a63ab266d79ae50e492",
+    "mannsahara/backend.py": "c695cf1b8ae243d4aa8a7d629cb5d214c293015138088dc50b8e514374d5947b",
+    "mannsahara/engine.py": "0a410b5fef85cd4a78c6873fa53b1da41982697dc67935d8227f07db2eabe25d",
+    "mannsahara/evaluate.py": "f3782ea58126268177263700cb91e5bbe806cf051e487c3fa91614b9a796bdf2",
+    "mannsahara/policy.py": "813fb30b9effa4229473cb81a3154bef58014a71cb75dc3cdb451761a3fd214a",
+    "mannsahara/resources.py": "da3b86a9bd855c3c4668cd8124969e6950dad42f55e163f38fbeb48ea49b3553",
+    "prompts/classifier.txt": "2c5a1d42c4ac29a70d18c41747940e8459fac5f6f3240276459f92810e21ac33",
+    "prompts/support.txt": "db7c6642d7de95db1b03673207e5e638c85370a4ba9858b0d04f3dac1f2199ec",
+    "uv.lock": "5a25d12ea96d45e2e990077a4ef857300da023da3b6e8a99867644a854535810",
+    "pyproject.toml": "66c1e6a143196e2b9acd9bfaf80cb95fdc7e005306c15e87b7ce51e39ad5b5c2",
+    "config/resources.json": "dbfdad490303d885b9de19cd142c1aaf296ab99ed8b1fa6bdc29b3f8826f5def",
+    "app.py": "99a9fd9d6560ddcaba2784e122dea642bbb6013fa6ae5fcd71ccaa547e7eb2e1",
+    "data/dialogues.jsonl": "927bbb57f285784d2319eff1f0b6fcd6c0aacc554a29f7d62b306dd255466d22",
+    "data/manifest.json": "83433707cd363d967e004ba092cf58190ce109876673a478e509a8320c286c7a",
+    "data/personal-life-development.jsonl": "3e43161e438dd246e615727a0dc2f2b476ca115db274aedd4f4aa2da4356332c",
+    "data/personal-life-manifest.json": "f139ef6b1d624b95fdd3c3cb88692db32d31084135e424de4ae8854dd57d8c3f",
+    "output/pdf/group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+    "output/pdf/group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "os": "macOS-27.0.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "arm"
+  },
+  "latency_scope": "Sequential engine wall-clock per turn; includes classifier/generation and cold load if any; excludes UI/network rendering and metadata calls. No per-run warm-up requests; a synthetic hello preflight was made before the first run, so model loading may be warm.",
+  "command": "uv run python -m mannsahara.evaluate --split development --suite personal-life --backend ollama --run-id personal-life-002",
+  "human_review_status": "not performed; no student scores fabricated"
+}

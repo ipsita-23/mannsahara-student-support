@@ -1,0 +1,48 @@
+{
+  "prompt_version": "router-1.6/support-1.4",
+  "policy_version": "safety-1.4",
+  "backend": {
+    "backend": "ollama",
+    "model": "qwen2.5:3b",
+    "options": {
+      "temperature": 0,
+      "seed": 47309,
+      "num_ctx": 2048,
+      "num_predict": 140
+    },
+    "classifier_num_predict": 24,
+    "classifier_timeout_s": 8.0,
+    "generation_timeout_s": 6.0,
+    "runtime_version": "0.40.16",
+    "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "3.1B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 2048,
+      "runner": "ggml"
+    }
+  },
+  "cold_start": true,
+  "synthetic_only": true,
+  "source_hashes": {
+    "mannsahara/__init__.py": "b4104cd0be37841f83a3bca1845887f6ed6310b707c27a63ab266d79ae50e492",
+    "mannsahara/backend.py": "0366a35f064ed67fa1ab25e61044a239dc62ae20794de9d3d087f1b265821d5d",
+    "mannsahara/engine.py": "7ebf2ab4929a6e9739e19b4a324f8c550fc644b79c9d2c48bbe3e07d93635d7e",
+    "mannsahara/evaluate.py": "5b6e2e8153d54236710511bb7c2dac9334cc8447e24f7a67f5ccbb651c5f26ad",
+    "mannsahara/policy.py": "e219d257ac4bef444867c661c8b5d20e4d66ccac48191e3486a92b7d7f6a60a3",
+    "mannsahara/resources.py": "da3b86a9bd855c3c4668cd8124969e6950dad42f55e163f38fbeb48ea49b3553",
+    "prompts/classifier.txt": "ce09d9d059f0164b4f28cae29104c575b831b25b4e10fc7412e26290cf3c1afa",
+    "prompts/support.txt": "a463837f2c051750164c095635bcd977c7322ca31a5964973e046f1a1c3eef63",
+    "scripts/check_context_followups.py": "36b4d5cabd3c3a0a544ff9914ee8860c78112e0270b910ad8ebfa511b82229df"
+  },
+  "command": "uv run python scripts/check_context_followups.py --run-id your-new-id --cold",
+  "scope": "Three-turn development regression, not independent validation or a clinical assessment",
+  "passed": false
+}

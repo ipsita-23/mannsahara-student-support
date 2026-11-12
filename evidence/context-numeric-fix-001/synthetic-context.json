@@ -1,0 +1,26 @@
+[
+  {
+    "role": "user",
+    "content": "I want a manageable study routine because I get distracted thinking about dating."
+  },
+  {
+    "role": "assistant",
+    "content": "It sounds like you want to make space for studying. What time of day would work for a short study session?"
+  },
+  {
+    "role": "user",
+    "content": "Around 7am would work."
+  },
+  {
+    "role": "assistant",
+    "content": "I'm having trouble responding reliably. I want to check your safety: are you thinking about harming yourself or someone else, or unable to stay safe right now? If there is immediate danger, seek local emergency help and a trusted nearby person now. For other support, you could contact your campus counseling team."
+  },
+  {
+    "role": "user",
+    "content": "What should I do when that study session ends?"
+  },
+  {
+    "role": "assistant",
+    "content": "When your study session ends, you could take a few minutes to do something you enjoy or find relaxing. This can help transition out of study mode. What might that be for you?"
+  }
+]

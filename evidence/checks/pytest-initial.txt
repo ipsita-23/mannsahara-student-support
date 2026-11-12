@@ -1,0 +1,160 @@
+   Building mannsahara @ file:///Users/theashgen/.t3/projects/ip-agent-llm
+      Built mannsahara @ file:///Users/theashgen/.t3/projects/ip-agent-llm
+Uninstalled 1 package in 1ms
+Installed 1 package in 1ms
+..........................................................FF             [100%]
+=================================== FAILURES ===================================
+_____________________ test_notice_chat_crisis_outage_reset _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a18fa50>
+
+    def test_notice_chat_crisis_outage_reset(monkeypatch):
+        from tests.test_safety import FakeBackend
+    
+        monkeypatch.setattr("mannsahara.backend.OllamaBackend", FakeBackend)
+>       at = AppTest.from_file("app.py", default_timeout=15).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ui.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'streamlit.testing.v1.app_test.AppTest'>
+script_path = PosixPath('app.py'), default_timeout = 15
+
+    @classmethod
+    def from_file(
+        cls, script_path: str | Path, *, default_timeout: float = 3
+    ) -> AppTest:
+        """
+        Create an ``AppTest`` for an app entrypoint defined in a file.
+    
+        This option is most convenient for CI workflows and testing of
+        published apps. The script must be executable on its own and so must
+        contain all necessary imports. For a multipage app, pass the main
+        script that you would supply to ``streamlit run``. To test a
+        file-based child page, initialize from the main script and use
+        ``AppTest.switch_page()``.
+    
+        Parameters
+        ----------
+        script_path: str | Path
+            Path to the app's entrypoint script. An absolute path is used as
+            given. A relative path is resolved against the Python file that
+            calls ``AppTest.from_file()``.
+    
+        default_timeout: float
+            Default time in seconds before a script run is timed out. Can be
+            overridden for individual ``.run()`` calls.
+    
+        Returns
+        -------
+        AppTest
+            A simulated Streamlit app for testing. The simulated app can be
+            executed via ``.run()``.
+    
+        Raises
+        ------
+        FileNotFoundError
+            If ``script_path`` does not point to an existing file.
+    
+        Examples
+        --------
+        Initialize a multipage app from its entrypoint, then switch to a page:
+    
+        >>> at = AppTest.from_file("app.py").run()
+        >>> at.switch_page("pages/settings.py").run()
+        """
+        script_path = Path(script_path)
+        if script_path.is_absolute():
+            path = script_path
+        else:
+            stack = traceback.StackSummary.extract(traceback.walk_stack(None))
+            caller_file = Path(stack[1].filename)
+            path = caller_file.parent / script_path
+    
+        if not path.is_file():
+>           raise FileNotFoundError(
+                f"AppTest script not found at {path.resolve()}. Relative paths are "
+                "resolved against the file that calls AppTest.from_file()."
+            )
+E           FileNotFoundError: AppTest script not found at /Users/theashgen/.t3/projects/ip-agent-llm/tests/app.py. Relative paths are resolved against the file that calls AppTest.from_file().
+
+.venv/lib/python3.11/site-packages/streamlit/testing/v1/app_test.py:619: FileNotFoundError
+_______________ test_misconfigured_backend_still_displays_crisis _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a18f990>
+
+    def test_misconfigured_backend_still_displays_crisis(monkeypatch):
+        monkeypatch.setenv("MANNSAHARA_OLLAMA_URL", "https://unavailable.invalid")
+>       at = AppTest.from_file("app.py", default_timeout=15).run()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ui.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'streamlit.testing.v1.app_test.AppTest'>
+script_path = PosixPath('app.py'), default_timeout = 15
+
+    @classmethod
+    def from_file(
+        cls, script_path: str | Path, *, default_timeout: float = 3
+    ) -> AppTest:
+        """
+        Create an ``AppTest`` for an app entrypoint defined in a file.
+    
+        This option is most convenient for CI workflows and testing of
+        published apps. The script must be executable on its own and so must
+        contain all necessary imports. For a multipage app, pass the main
+        script that you would supply to ``streamlit run``. To test a
+        file-based child page, initialize from the main script and use
+        ``AppTest.switch_page()``.
+    
+        Parameters
+        ----------
+        script_path: str | Path
+            Path to the app's entrypoint script. An absolute path is used as
+            given. A relative path is resolved against the Python file that
+            calls ``AppTest.from_file()``.
+    
+        default_timeout: float
+            Default time in seconds before a script run is timed out. Can be
+            overridden for individual ``.run()`` calls.
+    
+        Returns
+        -------
+        AppTest
+            A simulated Streamlit app for testing. The simulated app can be
+            executed via ``.run()``.
+    
+        Raises
+        ------
+        FileNotFoundError
+            If ``script_path`` does not point to an existing file.
+    
+        Examples
+        --------
+        Initialize a multipage app from its entrypoint, then switch to a page:
+    
+        >>> at = AppTest.from_file("app.py").run()
+        >>> at.switch_page("pages/settings.py").run()
+        """
+        script_path = Path(script_path)
+        if script_path.is_absolute():
+            path = script_path
+        else:
+            stack = traceback.StackSummary.extract(traceback.walk_stack(None))
+            caller_file = Path(stack[1].filename)
+            path = caller_file.parent / script_path
+    
+        if not path.is_file():
+>           raise FileNotFoundError(
+                f"AppTest script not found at {path.resolve()}. Relative paths are "
+                "resolved against the file that calls AppTest.from_file()."
+            )
+E           FileNotFoundError: AppTest script not found at /Users/theashgen/.t3/projects/ip-agent-llm/tests/app.py. Relative paths are resolved against the file that calls AppTest.from_file().
+
+.venv/lib/python3.11/site-packages/streamlit/testing/v1/app_test.py:619: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_ui.py::test_notice_chat_crisis_outage_reset - FileNotFoundE...
+FAILED tests/test_ui.py::test_misconfigured_backend_still_displays_crisis - F...
+2 failed, 58 passed in 0.85s

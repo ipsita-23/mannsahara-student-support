@@ -1,0 +1,2 @@
+ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1  output/pdf/group-09-mannsahara-specification.md
+39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484  output/pdf/group-09-mannsahara-specification.pdf

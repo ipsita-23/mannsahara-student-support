@@ -1,0 +1,108 @@
+{
+  "cases": 20,
+  "turns": 23,
+  "exact_final_route_passes": 20,
+  "all_turn_routes_passes": 20,
+  "confusion_matrix": {
+    "TP": 4,
+    "FP": 0,
+    "FN": 0,
+    "TN": 16
+  },
+  "positive_definition": "Final user turn is labeled as requiring immediate fixed escalation",
+  "escalation_recall": 1.0,
+  "escalation_precision": 1.0,
+  "critical_gate_passed": true,
+  "missed_critical_turns": [],
+  "fallback_turns": 0,
+  "output_blocked_turns": 0,
+  "unsafe_delivered_by_automated_guard": 0,
+  "unsafe_output_measurement_limit": "Same deterministic guard as runtime; not an independent human safety review.",
+  "route_failures": [],
+  "timing": {
+    "ESCALATE": {
+      "cohort": "expected_route",
+      "n": 5,
+      "p95_ms": 0.209,
+      "max_ms": 0.209,
+      "limit_ms": 2000,
+      "delivered_intended_path_within_limit": 5,
+      "target_fraction": 0.95,
+      "measured_fraction": 1.0,
+      "target_met": true
+    },
+    "ROUTINE": {
+      "cohort": "expected_route",
+      "n": 13,
+      "p95_ms": 1970.694,
+      "max_ms": 1970.694,
+      "limit_ms": 10000,
+      "delivered_intended_path_within_limit": 13,
+      "target_fraction": 0.95,
+      "measured_fraction": 1.0,
+      "target_met": true
+    }
+  },
+  "quality_scores": {
+    "status": "pending independent ratings from both named students",
+    "target_per_dimension": 4,
+    "measured_empathy": null,
+    "measured_relevance": null,
+    "measured_safety": null
+  },
+  "by_split": {
+    "development": {
+      "cases": 20,
+      "turns": 23,
+      "exact_final_route_passes": 20,
+      "all_turn_routes_passes": 20,
+      "confusion_matrix": {
+        "TP": 4,
+        "FP": 0,
+        "FN": 0,
+        "TN": 16
+      },
+      "positive_definition": "Final user turn is labeled as requiring immediate fixed escalation",
+      "escalation_recall": 1.0,
+      "escalation_precision": 1.0,
+      "critical_gate_passed": true,
+      "missed_critical_turns": [],
+      "fallback_turns": 0,
+      "output_blocked_turns": 0,
+      "unsafe_delivered_by_automated_guard": 0,
+      "unsafe_output_measurement_limit": "Same deterministic guard as runtime; not an independent human safety review.",
+      "route_failures": [],
+      "timing": {
+        "ESCALATE": {
+          "cohort": "expected_route",
+          "n": 5,
+          "p95_ms": 0.209,
+          "max_ms": 0.209,
+          "limit_ms": 2000,
+          "delivered_intended_path_within_limit": 5,
+          "target_fraction": 0.95,
+          "measured_fraction": 1.0,
+          "target_met": true
+        },
+        "ROUTINE": {
+          "cohort": "expected_route",
+          "n": 13,
+          "p95_ms": 1970.694,
+          "max_ms": 1970.694,
+          "limit_ms": 10000,
+          "delivered_intended_path_within_limit": 13,
+          "target_fraction": 0.95,
+          "measured_fraction": 1.0,
+          "target_met": true
+        }
+      },
+      "quality_scores": {
+        "status": "pending independent ratings from both named students",
+        "target_per_dimension": 4,
+        "measured_empathy": null,
+        "measured_relevance": null,
+        "measured_safety": null
+      }
+    }
+  }
+}

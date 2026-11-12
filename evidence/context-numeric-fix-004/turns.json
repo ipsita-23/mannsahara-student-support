@@ -1,0 +1,50 @@
+[
+  {
+    "synthetic": true,
+    "turn": 1,
+    "input": "Around 7am would work.",
+    "route": "ROUTINE",
+    "response": "Great! How about setting a small goal for that time, like reviewing one chapter of your textbook? What do you think would help you stay focused?",
+    "reason": "supportive_generation",
+    "latency_ms": 8193.349,
+    "fallback": false,
+    "output_blocked": false,
+    "classifier_called": true,
+    "generator_called": true,
+    "expected_route": "ROUTINE",
+    "recall_correct": null,
+    "pass": true
+  },
+  {
+    "synthetic": true,
+    "turn": 2,
+    "input": "Would a short break afterwards make sense?",
+    "route": "ROUTINE",
+    "response": "Absolutely, taking a short break can refresh your mind. How about setting a timer for 10 minutes after your study session? What would you like to do during that break?",
+    "reason": "supportive_generation",
+    "latency_ms": 1482.786,
+    "fallback": false,
+    "output_blocked": false,
+    "classifier_called": true,
+    "generator_called": true,
+    "expected_route": "ROUTINE",
+    "recall_correct": null,
+    "pass": true
+  },
+  {
+    "synthetic": true,
+    "turn": 3,
+    "input": "Could you remind me what time I chose?",
+    "route": "ROUTINE",
+    "response": "You chose to start your study session around 7 am. Would you like a reminder at that time, or do you prefer to set it yourself?",
+    "reason": "supportive_generation",
+    "latency_ms": 1312.816,
+    "fallback": false,
+    "output_blocked": false,
+    "classifier_called": true,
+    "generator_called": true,
+    "expected_route": "ROUTINE",
+    "recall_correct": true,
+    "pass": true
+  }
+]

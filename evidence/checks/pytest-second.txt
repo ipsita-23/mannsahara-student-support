@@ -1,0 +1,56 @@
+..........................................................FF             [100%]
+=================================== FAILURES ===================================
+_____________________ test_notice_chat_crisis_outage_reset _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10c15e390>
+
+    def test_notice_chat_crisis_outage_reset(monkeypatch):
+        from tests.test_safety import FakeBackend
+    
+        monkeypatch.setattr("mannsahara.backend.OllamaBackend", FakeBackend)
+        at = AppTest.from_file(APP, default_timeout=15).run()
+        assert not at.exception
+        assert not at.chat_input
+        assert any("synthetic scenarios only" in x.value for x in at.info)
+        at.button[1].click().run()
+>       assert at.chat_input
+E       AssertionError: assert WidgetList()
+E        +  where WidgetList() = AppTest(\n    _script_path='/Users/theashgen/.t3/projects/ip-agent-llm/app.py',\n    default_timeout=15,\n    _session_st...vidence'\n                )\n            }\n        ),\n        2: SpecialBlock(\n            type='event'\n        )\n    }\n).chat_input
+
+tests/test_ui.py:17: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2026-11-12 18:42:30.317 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+------------------------------ Captured log call -------------------------------
+WARNING  streamlit.runtime.scriptrunner_utils.script_run_context:script_run_context.py:522 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+_______________ test_misconfigured_backend_still_displays_crisis _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10c34f010>
+
+    def test_misconfigured_backend_still_displays_crisis(monkeypatch):
+        monkeypatch.setenv("MANNSAHARA_OLLAMA_URL", "https://unavailable.invalid")
+        at = AppTest.from_file(APP, default_timeout=15).run()
+        at.button[1].click().run()
+>       at.chat_input[0].set_value("I might hurt myself tonight.").run()
+        ^^^^^^^^^^^^^^^^
+
+tests/test_ui.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = WidgetList(), idx = 0
+
+    def __getitem__(self, idx: int | slice) -> El_co | ElementList[El_co]:
+        if isinstance(idx, slice):
+            return ElementList(self._list[idx])
+>       return self._list[idx]
+               ^^^^^^^^^^^^^^^
+E       IndexError: list index out of range
+
+.venv/lib/python3.11/site-packages/streamlit/testing/v1/element_tree.py:576: IndexError
+----------------------------- Captured stderr call -----------------------------
+2026-11-12 18:42:31.386 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+------------------------------ Captured log call -------------------------------
+WARNING  streamlit.runtime.scriptrunner_utils.script_run_context:script_run_context.py:522 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+=========================== short test summary info ============================
+FAILED tests/test_ui.py::test_notice_chat_crisis_outage_reset - AssertionErro...
+FAILED tests/test_ui.py::test_misconfigured_backend_still_displays_crisis - I...
+2 failed, 58 passed in 1.49s

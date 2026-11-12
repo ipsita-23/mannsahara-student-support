@@ -1,0 +1,33 @@
+{
+  "prompt_version": "router-1.6/support-1.4",
+  "policy_version": "safety-1.4",
+  "backend": {
+    "backend": "ollama",
+    "model": "qwen2.5:3b",
+    "options": {
+      "temperature": 0,
+      "seed": 47309,
+      "num_ctx": 2048,
+      "num_predict": 140
+    },
+    "classifier_num_predict": 24,
+    "classifier_timeout_s": 3,
+    "generation_timeout_s": 6,
+    "runtime_version": "0.40.16",
+    "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "3.1B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 2048,
+      "runner": "ggml"
+    }
+  },
+  "scope": "Targeted synthetic reproduction; not held-out evaluation."
+}

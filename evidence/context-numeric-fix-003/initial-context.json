@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "I want a manageable morning study routine because I get distracted thinking about dating."
+  },
+  {
+    "role": "assistant",
+    "content": "What time in the morning would work for a short study session?"
+  }
+]

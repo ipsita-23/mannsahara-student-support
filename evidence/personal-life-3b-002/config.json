@@ -1,0 +1,85 @@
+{
+  "run_id": "personal-life-3b-002",
+  "started_at": "2026-11-12T14:21:18.641972+00:00",
+  "split": "development",
+  "synthetic_only": true,
+  "backend": {
+    "backend": "ollama",
+    "model": "qwen2.5:3b",
+    "options": {
+      "temperature": 0,
+      "seed": 47309,
+      "num_ctx": 2048,
+      "num_predict": 140
+    },
+    "classifier_num_predict": 24,
+    "classifier_timeout_s": 3,
+    "generation_timeout_s": 6,
+    "runtime_version": "0.40.16",
+    "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "3.1B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 2048,
+      "runner": "ggml"
+    }
+  },
+  "policy_version": "safety-1.3",
+  "prompt_version": "router-1.5/support-1.3",
+  "suite": "personal-life",
+  "dataset": {
+    "dataset_version": "personal-life-development-1.0",
+    "frozen_at": "2026-11-12T14:12:24.438524+00:00",
+    "sha256": "3e43161e438dd246e615727a0dc2f2b476ca115db274aedd4f4aa2da4356332c",
+    "total": 20,
+    "counts": {
+      "development/routine": 12,
+      "development/ambiguous": 3,
+      "development/crisis": 4,
+      "development/adversarial_indirect": 1
+    },
+    "provenance": "Original invented personal-life scenarios; no real student disclosures. Supplemental development coverage, not an independent held-out set.",
+    "specification_hashes": {
+      "group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+      "group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+    }
+  },
+  "code_hashes": {
+    "mannsahara/__init__.py": "b4104cd0be37841f83a3bca1845887f6ed6310b707c27a63ab266d79ae50e492",
+    "mannsahara/backend.py": "7d5f37836ce2d63338944d992a6b8ec8cf72cc5ffdf8d7cabfaae820fe5a9416",
+    "mannsahara/engine.py": "0a410b5fef85cd4a78c6873fa53b1da41982697dc67935d8227f07db2eabe25d",
+    "mannsahara/evaluate.py": "5b6e2e8153d54236710511bb7c2dac9334cc8447e24f7a67f5ccbb651c5f26ad",
+    "mannsahara/policy.py": "813fb30b9effa4229473cb81a3154bef58014a71cb75dc3cdb451761a3fd214a",
+    "mannsahara/resources.py": "da3b86a9bd855c3c4668cd8124969e6950dad42f55e163f38fbeb48ea49b3553",
+    "prompts/classifier.txt": "41c8baec5c29b56680adc72c3fe085bdfccdff5d3270fb571ffb1254c0a261a5",
+    "prompts/support.txt": "96c4d104f71b72bf0304286dc59eb8bdb3e6998baf5c3e8afcc1823e3e68bb8c",
+    "uv.lock": "5a25d12ea96d45e2e990077a4ef857300da023da3b6e8a99867644a854535810",
+    "pyproject.toml": "66c1e6a143196e2b9acd9bfaf80cb95fdc7e005306c15e87b7ce51e39ad5b5c2",
+    "config/resources.json": "dbfdad490303d885b9de19cd142c1aaf296ab99ed8b1fa6bdc29b3f8826f5def",
+    "app.py": "4a4e197c4b46f55e66ffb8bc27cc9b5f0c6fd3468557b5a996216a7fe36dc5dd",
+    "assets/icon.svg": "5cac036716b641ea59e82f697563b243c81e36110c25d450fe283c5681938055",
+    ".streamlit/config.toml": "10b1dd6c067f6b794d1f12c5a04f0cc5283fa338c64570f74558c8cd9f6a62a4",
+    "data/dialogues.jsonl": "927bbb57f285784d2319eff1f0b6fcd6c0aacc554a29f7d62b306dd255466d22",
+    "data/manifest.json": "83433707cd363d967e004ba092cf58190ce109876673a478e509a8320c286c7a",
+    "data/personal-life-development.jsonl": "3e43161e438dd246e615727a0dc2f2b476ca115db274aedd4f4aa2da4356332c",
+    "data/personal-life-manifest.json": "f139ef6b1d624b95fdd3c3cb88692db32d31084135e424de4ae8854dd57d8c3f",
+    "output/pdf/group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+    "output/pdf/group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "os": "macOS-27.0.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "arm"
+  },
+  "latency_scope": "Sequential engine wall-clock per turn; includes classifier/generation and cold load if any; excludes UI/network rendering and metadata calls. No per-run warm-up requests; a synthetic hello preflight was made before the first run, so model loading may be warm.",
+  "command": "MANNSAHARA_MODEL=qwen2.5:3b MANNSAHARA_OLLAMA_URL=http://127.0.0.1:11435 uv run python -m mannsahara.evaluate --split development --suite personal-life --backend ollama --run-id personal-life-3b-002",
+  "human_review_status": "not performed; no student scores fabricated"
+}

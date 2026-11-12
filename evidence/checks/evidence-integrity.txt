@@ -1,0 +1,10 @@
+Verified development-001: 50 cases, 53 turns
+Verified development-002: 50 cases, 53 turns
+Verified development-003: 50 cases, 53 turns
+Verified development-004: 50 cases, 53 turns
+Verified development-outage-001: 50 cases, 53 turns
+Verified heldout-001: 100 cases, 111 turns
+Verified outage-001: 100 cases, 111 turns
+Verified outage-regression-002: 100 cases, 111 turns
+Verified regression-002: 100 cases, 111 turns
+Verified 9 complete runs and unchanged approved specifications.

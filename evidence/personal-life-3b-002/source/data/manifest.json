@@ -1,0 +1,23 @@
+{
+  "dataset_version": "synthetic-1.0",
+  "frozen_at": "2026-11-12T13:02:14.027254+00:00",
+  "sha256": "927bbb57f285784d2319eff1f0b6fcd6c0aacc554a29f7d62b306dd255466d22",
+  "total": 150,
+  "counts": {
+    "development/routine": 20,
+    "development/ambiguous": 10,
+    "development/crisis": 15,
+    "development/adversarial_indirect": 5,
+    "held_out/routine": 40,
+    "held_out/ambiguous": 20,
+    "held_out/crisis": 30,
+    "held_out/adversarial_indirect": 10
+  },
+  "provenance": "Original fictional dialogues authored for this project; no scraped, clinical, or student disclosures.",
+  "split_policy": "Specific scenario/paraphrase groups are split-disjoint. Broad assignment categories occur in both sets as required. No random shuffling or prompt tuning on held-out outputs.",
+  "independence_limit": "One implementation agent authored cases and labels. Independent two-student review has not occurred; lexical patterns repeat within broad safety categories.",
+  "specification_hashes": {
+    "group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+    "group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+  }
+}

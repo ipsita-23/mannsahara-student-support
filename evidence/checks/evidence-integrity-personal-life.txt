@@ -1,0 +1,20 @@
+Verified development-001: 50 cases, 53 turns
+Verified development-002: 50 cases, 53 turns
+Verified development-003: 50 cases, 53 turns
+Verified development-004: 50 cases, 53 turns
+Verified development-outage-001: 50 cases, 53 turns
+Verified heldout-001: 100 cases, 111 turns
+Verified outage-001: 100 cases, 111 turns
+Verified outage-regression-002: 100 cases, 111 turns
+Verified personal-life-001: 20 cases, 23 turns
+Verified personal-life-002: 20 cases, 23 turns
+Verified personal-life-003: 20 cases, 23 turns
+Verified personal-life-3b-001: 20 cases, 23 turns
+Verified personal-life-3b-002: 20 cases, 23 turns
+Verified personal-life-outage-001: 20 cases, 23 turns
+Verified personal-life-outage-002: 20 cases, 23 turns
+Verified personal-scope-development-005: 50 cases, 53 turns
+Verified personal-scope-development-006: 50 cases, 53 turns
+Verified personal-scope-development-007: 50 cases, 53 turns
+Verified regression-002: 100 cases, 111 turns
+Verified 19 complete runs and unchanged approved specifications.

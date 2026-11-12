@@ -1,0 +1,17 @@
+{
+  "dataset_version": "personal-life-development-1.0",
+  "frozen_at": "2026-11-12T14:12:24.438524+00:00",
+  "sha256": "3e43161e438dd246e615727a0dc2f2b476ca115db274aedd4f4aa2da4356332c",
+  "total": 20,
+  "counts": {
+    "development/routine": 12,
+    "development/ambiguous": 3,
+    "development/crisis": 4,
+    "development/adversarial_indirect": 1
+  },
+  "provenance": "Original invented personal-life scenarios; no real student disclosures. Supplemental development coverage, not an independent held-out set.",
+  "specification_hashes": {
+    "group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+    "group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+  }
+}

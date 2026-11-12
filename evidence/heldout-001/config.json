@@ -1,0 +1,86 @@
+{
+  "run_id": "heldout-001",
+  "started_at": "2026-11-12T13:10:20.491695+00:00",
+  "split": "held_out",
+  "synthetic_only": true,
+  "backend": {
+    "backend": "ollama",
+    "model": "qwen2.5:1.5b",
+    "options": {
+      "temperature": 0,
+      "seed": 47309,
+      "num_ctx": 2048,
+      "num_predict": 140
+    },
+    "classifier_num_predict": 24,
+    "classifier_timeout_s": 3,
+    "generation_timeout_s": 6,
+    "runtime_version": "0.40.16",
+    "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "1.5B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 1536,
+      "runner": "ggml"
+    }
+  },
+  "policy_version": "safety-1.2",
+  "prompt_version": "router-1.2/support-1.0",
+  "dataset": {
+    "dataset_version": "synthetic-1.0",
+    "frozen_at": "2026-11-12T13:02:14.027254+00:00",
+    "sha256": "927bbb57f285784d2319eff1f0b6fcd6c0aacc554a29f7d62b306dd255466d22",
+    "total": 150,
+    "counts": {
+      "development/routine": 20,
+      "development/ambiguous": 10,
+      "development/crisis": 15,
+      "development/adversarial_indirect": 5,
+      "held_out/routine": 40,
+      "held_out/ambiguous": 20,
+      "held_out/crisis": 30,
+      "held_out/adversarial_indirect": 10
+    },
+    "provenance": "Original fictional dialogues authored for this project; no scraped, clinical, or student disclosures.",
+    "split_policy": "Specific scenario/paraphrase groups are split-disjoint. Broad assignment categories occur in both sets as required. No random shuffling or prompt tuning on held-out outputs.",
+    "independence_limit": "One implementation agent authored cases and labels. Independent two-student review has not occurred; lexical patterns repeat within broad safety categories.",
+    "specification_hashes": {
+      "group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+      "group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+    }
+  },
+  "code_hashes": {
+    "mannsahara/__init__.py": "b4104cd0be37841f83a3bca1845887f6ed6310b707c27a63ab266d79ae50e492",
+    "mannsahara/backend.py": "3f68f024cee051424035099b58cf7fb35319de3158bd53c8d9d04c35557e826d",
+    "mannsahara/engine.py": "0a410b5fef85cd4a78c6873fa53b1da41982697dc67935d8227f07db2eabe25d",
+    "mannsahara/evaluate.py": "e830f62d9e2df11458c45a0e7d82eddd79359b336214f2ea493378d2affe8103",
+    "mannsahara/policy.py": "64ee99390e6666cf375f881e8f0536750c4dfebf324ce8606d7499224fb7485d",
+    "mannsahara/resources.py": "da3b86a9bd855c3c4668cd8124969e6950dad42f55e163f38fbeb48ea49b3553",
+    "prompts/classifier.txt": "085b056245bd53acd6db843629b424c33ee8c31ffa78b6b9196e1762bb7d4cdb",
+    "prompts/support.txt": "e759f21c4f18b4ee76eab2d83ef9680d9290a7777abad7825d2ff0db87c1c8fb",
+    "uv.lock": "5a25d12ea96d45e2e990077a4ef857300da023da3b6e8a99867644a854535810",
+    "pyproject.toml": "66c1e6a143196e2b9acd9bfaf80cb95fdc7e005306c15e87b7ce51e39ad5b5c2",
+    "config/resources.json": "dbfdad490303d885b9de19cd142c1aaf296ab99ed8b1fa6bdc29b3f8826f5def",
+    "app.py": "97c60d69d104d3f9c6a4df3ef1cd1f827b77c81e743a693b99f230e24c20f29c",
+    "data/manifest.json": "83433707cd363d967e004ba092cf58190ce109876673a478e509a8320c286c7a",
+    "data/dialogues.jsonl": "927bbb57f285784d2319eff1f0b6fcd6c0aacc554a29f7d62b306dd255466d22",
+    "output/pdf/group-09-mannsahara-specification.md": "ff53cdaa950e701783844aa2f506e07ac80eb320b025282419a14369e2addcd1",
+    "output/pdf/group-09-mannsahara-specification.pdf": "39f57ae65965410e388c154ff469d48d943f1a10c3d8e1f72a7d745f614f5484"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "os": "macOS-27.0.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "arm"
+  },
+  "latency_scope": "Sequential engine wall-clock per turn; includes classifier/generation and cold load if any; excludes UI/network rendering and metadata calls. No per-run warm-up requests; a synthetic hello preflight was made before the first run, so model loading may be warm.",
+  "command": "uv run python -m mannsahara.evaluate --split held_out --backend ollama --run-id heldout-001",
+  "human_review_status": "not performed; no student scores fabricated"
+}

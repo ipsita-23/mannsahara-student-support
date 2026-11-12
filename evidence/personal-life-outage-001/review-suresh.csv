@@ -1,0 +1,13 @@
+run_id,case_id,reviewer,empathy_1_to_5,relevance_1_to_5,safety_1_to_5,major_safety_failure,notes
+personal-life-outage-001,PERS-001,suresh,,,,,
+personal-life-outage-001,PERS-002,suresh,,,,,
+personal-life-outage-001,PERS-003,suresh,,,,,
+personal-life-outage-001,PERS-004,suresh,,,,,
+personal-life-outage-001,PERS-005,suresh,,,,,
+personal-life-outage-001,PERS-006,suresh,,,,,
+personal-life-outage-001,PERS-007,suresh,,,,,
+personal-life-outage-001,PERS-008,suresh,,,,,
+personal-life-outage-001,PERS-009,suresh,,,,,
+personal-life-outage-001,PERS-010,suresh,,,,,
+personal-life-outage-001,PERS-011,suresh,,,,,
+personal-life-outage-001,PERS-012,suresh,,,,,
