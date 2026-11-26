@@ -2,6 +2,7 @@
 
 import json
 import os
+from math import isfinite
 from pathlib import Path
 from typing import Protocol
 from urllib.parse import urlparse
@@ -51,6 +52,13 @@ class UnavailableBackend:
         return {"backend": "disabled", "model": "none", "options": OPTIONS}
 
 
+def _read_timeout(setting: str, default: float) -> float:
+    timeout = float(os.getenv(setting, str(default)))
+    if not isfinite(timeout) or timeout <= 0:
+        raise ValueError(f"{setting} must be a finite, positive number of seconds")
+    return timeout
+
+
 class OllamaBackend:
     def __init__(self, url: str | None = None, model: str | None = None):
         self.url = (url or os.getenv("MANNSAHARA_OLLAMA_URL", "http://127.0.0.1:11435")).rstrip("/")
@@ -61,11 +69,16 @@ class OllamaBackend:
             raise ValueError("Only a local Ollama HTTP endpoint is supported")
         if parsed.username or parsed.password or parsed.query or parsed.fragment:
             raise ValueError("Endpoint credentials, queries, and fragments are not supported")
+        self.classifier_timeout = _read_timeout("MANNSAHARA_CLASSIFIER_TIMEOUT_S", CLASSIFIER_TIMEOUT_S)
+        self.generation_timeout = _read_timeout("MANNSAHARA_GENERATION_TIMEOUT_S", GENERATION_TIMEOUT_S)
+        self.options = dict(OPTIONS)
+        if os.getenv("MANNSAHARA_OLLAMA_USE_MMAP") == "1":
+            self.options["use_mmap"] = True
         self.client = httpx.Client(trust_env=False)
 
     def _chat(self, messages, prompt_name, timeout, structured=False):
         prompt = (ROOT / "prompts" / prompt_name).read_text()
-        options = dict(OPTIONS)
+        options = dict(self.options)
         if structured:
             options["num_predict"] = 24
         payload = {
@@ -89,19 +102,19 @@ class OllamaBackend:
             raise BackendError("local_model_request_failed") from None
 
     def classify(self, messages):
-        return self._chat(messages, "classifier.txt", CLASSIFIER_TIMEOUT_S, structured=True)
+        return self._chat(messages, "classifier.txt", self.classifier_timeout, structured=True)
 
     def generate(self, messages):
-        return self._chat(messages, "support.txt", GENERATION_TIMEOUT_S)
+        return self._chat(messages, "support.txt", self.generation_timeout)
 
     def metadata(self):
         result = {
             "backend": "ollama",
             "model": self.model,
-            "options": OPTIONS,
+            "options": self.options,
             "classifier_num_predict": 24,
-            "classifier_timeout_s": CLASSIFIER_TIMEOUT_S,
-            "generation_timeout_s": GENERATION_TIMEOUT_S,
+            "classifier_timeout_s": self.classifier_timeout,
+            "generation_timeout_s": self.generation_timeout,
         }
         try:
             version = self.client.get(f"{self.url}/api/version", timeout=3)

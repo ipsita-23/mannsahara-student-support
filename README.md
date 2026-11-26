@@ -8,6 +8,28 @@ A runnable English support chatbot with a separate safety router, fixed crisis r
 
 ## Run the demo
 
+### With Docker Compose
+
+Start Docker and make sure `docker compose version` works. Allow at least 4 GB of memory for Docker, plus memory for any other containers you run. The Ollama Linux image and model require several gigabytes of disk space.
+
+```bash
+docker compose up --build -d
+```
+
+On first launch, Compose downloads about 1.9 GB of model weights and waits for the download before starting Streamlit. Open http://127.0.0.1:8501 and select **Begin fictional conversation**. If port 8501 is in use, run `MANNSAHARA_PORT=8502 docker compose up --build -d` and open http://127.0.0.1:8502.
+
+```bash
+docker compose ps -a
+docker compose logs -f model-pull
+docker compose down
+```
+
+Use the first two commands to check startup or follow the model download. `docker compose down` stops the demo and keeps the model in a named volume for the next run. Ollama listens on a loopback address shared by the containers, and the only published host port is Streamlit on localhost. Ollama cloud features are disabled.
+
+Docker on macOS runs Ollama inference on the CPU. Compose memory-maps the model weights to reduce memory pressure. The first reply can take a few minutes on a laptop with limited CPU or memory. The classifier and generator each have a 120-second read timeout. Set `MANNSAHARA_CLASSIFIER_TIMEOUT_S` or `MANNSAHARA_GENERATION_TIMEOUT_S` before `docker compose up -d` to adjust these limits.
+
+### With native Ollama
+
 Requires Python 3.11–3.13, [uv](https://docs.astral.sh/uv/), and [Ollama](https://ollama.com/download). The current setup uses Python 3.11, Ollama 0.40.16 and `qwen2.5:3b` (approximately 1.9 GB model download). Allow about 4 GB for runtime, model and Python dependencies. Installation/model pull need internet; inference stays on loopback. The checked-in `uv.lock` pins Python dependencies.
 
 ```bash
@@ -73,7 +95,7 @@ No regional contact has been independently verified. `config/resources.json` int
 
 ## Troubleshoot
 
-If routine chat shows **Limited response · safety check**, confirm the server is running on port 11435, the model pull completed, and **Simulate model outage** is off. Cold loading or a busy machine may exceed the classifier's three-second or generator's six-second read timeout. Known crisis rules still work during an outage. The UI intentionally does not show raw exception details.
+If routine chat shows **Limited response · safety check**, confirm Ollama is running, the model pull completed, and **Simulate model outage** is off. Cold loading or a busy machine may exceed the read timeout. The native defaults are eight seconds for classification and six seconds for generation. Known crisis rules still work during an outage. The UI intentionally does not show raw exception details.
 
 If `uv sync --frozen` rejects your Python, use `uv python install 3.11` then `uv sync --frozen --python 3.11`. If port 11435 is busy, choose a free local port in both the server's `OLLAMA_HOST` and the app's `MANNSAHARA_OLLAMA_URL`; the supplied script sets the default explicitly. If dataset checks fail, restore the frozen files; do not silently regenerate them. See the report for remaining assessment/review limitations.
 

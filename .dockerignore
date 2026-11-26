@@ -1,0 +1,15 @@
+**
+!pyproject.toml
+!uv.lock
+!app.py
+!.streamlit/
+!.streamlit/config.toml
+!assets/
+!assets/icon.svg
+!mannsahara/
+!mannsahara/*.py
+!prompts/
+!prompts/*.txt
+!evidence/
+!evidence/*/
+!evidence/*/cases.csv

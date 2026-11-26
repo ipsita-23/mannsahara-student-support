@@ -220,7 +220,11 @@ def main():
     if args.backend == "ollama":
         environment_prefix = (
             f"MANNSAHARA_MODEL={shlex.quote(meta['model'])} MANNSAHARA_OLLAMA_URL={shlex.quote(backend.url)} "
+            f"MANNSAHARA_CLASSIFIER_TIMEOUT_S={meta['classifier_timeout_s']} "
+            f"MANNSAHARA_GENERATION_TIMEOUT_S={meta['generation_timeout_s']} "
         )
+        if meta["options"].get("use_mmap"):
+            environment_prefix += "MANNSAHARA_OLLAMA_USE_MMAP=1 "
     config = {
         "run_id": run_id,
         "started_at": datetime.now(timezone.utc).isoformat(),

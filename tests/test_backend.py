@@ -34,6 +34,35 @@ def test_local_adapter_sends_schema_settings_and_context():
     assert seen[0]["stream"] is False
 
 
+def test_read_timeouts_can_be_configured_per_stage(monkeypatch):
+    monkeypatch.setenv("MANNSAHARA_CLASSIFIER_TIMEOUT_S", "45")
+    monkeypatch.setenv("MANNSAHARA_GENERATION_TIMEOUT_S", "60")
+    read_timeouts = []
+
+    def handle(request):
+        read_timeouts.append(request.extensions["timeout"]["read"])
+        return httpx.Response(200, json={"message": {"content": "fictional response"}, "done": True})
+
+    backend = backend_for(handle)
+    backend.classify([])
+    backend.generate([])
+    assert read_timeouts == [45, 60]
+
+
+def test_memory_mapping_is_forwarded_when_enabled(monkeypatch):
+    import json
+
+    monkeypatch.setenv("MANNSAHARA_OLLAMA_USE_MMAP", "1")
+
+    def handle(request):
+        assert json.loads(request.content)["options"]["use_mmap"] is True
+        return httpx.Response(200, json={"message": {"content": "fictional response"}, "done": True})
+
+    backend = backend_for(handle)
+    assert backend.generate([])
+    assert backend.options["use_mmap"] is True
+
+
 @pytest.mark.parametrize("kind", ["timeout", "500", "bad_json", "incomplete"])
 def test_adapter_errors_are_sanitized(kind):
     def handle(request):

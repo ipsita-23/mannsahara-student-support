@@ -1,0 +1,57 @@
+services:
+  ollama:
+    image: &ollama_image ollama/ollama:0.40.16
+    environment:
+      OLLAMA_HOST: "127.0.0.1:11435"
+      OLLAMA_MODELS: /models
+      OLLAMA_NO_CLOUD: "1"
+      OLLAMA_DEBUG_LOG_REQUESTS: "false"
+      # Keep model weights file-backed on memory-constrained CPU runtimes.
+      LLAMA_ARG_REPACK: "0"
+    volumes:
+      - ollama-models:/models
+    # Streamlit shares this network namespace to keep Ollama on loopback.
+    ports:
+      - "127.0.0.1:${MANNSAHARA_PORT:-8501}:8501"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  model-pull:
+    image: *ollama_image
+    network_mode: service:ollama
+    environment:
+      OLLAMA_HOST: "127.0.0.1:11435"
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        if ollama show qwen2.5:3b >/dev/null 2>&1; then
+          echo "qwen2.5:3b is already available"
+        else
+          exec ollama pull qwen2.5:3b
+        fi
+    depends_on:
+      ollama:
+        condition: service_healthy
+        restart: true
+
+  app:
+    build: .
+    network_mode: service:ollama
+    environment:
+      MANNSAHARA_OLLAMA_URL: "http://127.0.0.1:11435"
+      MANNSAHARA_MODEL: "qwen2.5:3b"
+      MANNSAHARA_OLLAMA_USE_MMAP: "1"
+      MANNSAHARA_CLASSIFIER_TIMEOUT_S: "${MANNSAHARA_CLASSIFIER_TIMEOUT_S:-120}"
+      MANNSAHARA_GENERATION_TIMEOUT_S: "${MANNSAHARA_GENERATION_TIMEOUT_S:-120}"
+    depends_on:
+      ollama:
+        condition: service_healthy
+        restart: true
+      model-pull:
+        condition: service_completed_successfully
+
+volumes:
+  ollama-models:
